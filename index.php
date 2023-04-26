@@ -168,6 +168,29 @@ echo 'Hello World';
     print_r($arrayNamePoint);
     echo '<br>'.$arrayNamePoint['nguyen van a'];
 
+    $arrayNumber = array(10, 20, 30, 40, 50);
+    echo $arrayNumber[0]; //output: 10
+    echo $arrayNumber[2]; //output: 30
+
+    $person = array(
+        "name" => "John",
+        "age" => 30,
+        "city" => "New York"
+    );
+    echo $person["name"];
+    echo $person["city"];
+
+    $employees = array(
+        array("name" => "John", "age" => 25, "position" => "Manger"),
+        array("name" => "Mary", "age" => 28, "position" => "Developer"),
+        array("name" => "David", "age" => 32, "position" => "Designer")
+    );
+    echo '<pre>';
+    print_r($employees);
+    echo '</pre>';
+    echo $employees[0]["name"];
+    echo $employees[1]["position"]; 
+
 
 
 
