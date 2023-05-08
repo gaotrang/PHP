@@ -1,11 +1,12 @@
 <?php
+    define('URL', 'http://localhost/PHP/' );
     $servername = "localhost";
-    $username = "root";
-    $password = '';
+    $usernameDB = "root";
+    $passwordDB = '';
     $database = 'giang';
     $port = 3307; //3306
 
-    $conn = mysqli_connect($servername, $username, $password, $database, $port);
+    $conn = mysqli_connect($servername, $usernameDB, $passwordDB, $database, $port);
 
     // Check connection
     if(!$conn){
