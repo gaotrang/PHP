@@ -56,8 +56,8 @@
     
         if ($_FILES['avatar_url']) {
             $target_dir = "uploads/";
-            $baseFileName = basename($_FILES["avatar_url"]["name"]);
-            $target_file = $target_dir . uniqid(true) . '_' . $baseFileName;
+            $baseFileName = uniqid(true) . '_' .basename($_FILES["avatar_url"]["name"]);
+            $target_file = $target_dir . $baseFileName;
             if (move_uploaded_file($_FILES["avatar_url"]["tmp_name"], $target_file)) {
                 echo 'Upload thanh cong';
             } else {
