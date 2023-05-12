@@ -1,5 +1,5 @@
 <?php
-    define('URL', 'http://localhost/PHP/' );
+
     $servername = "localhost";
     $usernameDB = "root";
     $passwordDB = '';

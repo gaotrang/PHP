@@ -1,3 +1,4 @@
+<?php define('URL', 'http://localhost/PHP/list_user.php/'); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -82,6 +83,7 @@
 
             if ($conn->query($sql) === TRUE) {
                 echo "New record created successfully";
+                header('Location: ' . URL .'list_user.php');
             } else {
                 echo "Error: " . $sql . "<br>" . $conn->error;
             }
