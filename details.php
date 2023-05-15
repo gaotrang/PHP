@@ -17,6 +17,7 @@
     <?php
     require_once('header.php');
     require('database.php');
+    require('prepareStatement.php');
 
         if(isset($_GET['id'])){
             $id = $_GET['id'];
@@ -44,19 +45,31 @@
                 } else {
                     echo 'Upload that bai';
                 }
-
             }
-            //check duplicate entry data
+
+            $arrayData = [
+                'username' => $username,
+                'password' => $password,
+            ];
+            
             if(!is_null($baseFileName)){
-                $sql = "UPDATE user SET username='".$username."', password='".$password."', image_url='".$baseFileName."'WHERE id=".$_POST['id'];
-            }else{
-                $sql = "UPDATE user SET username='".$username."', password='".$password."'"." WHERE id=".$_POST['id'];
+                $arrayData['image_url'] = $baseFileName;
             }
 
+            $sql = prepareUpdateStatement($arrayData, 'user', $_GET['id']);
+
+            //check duplicate entry data
+            // if(!is_null($baseFileName)){
+            //     $sql = "UPDATE user SET username='".$username."', password='".$password."', image_url='".$baseFileName."'WHERE id=".$_GET['id'];
+            // }else{
+            //     $sql = "UPDATE user SET username='".$username."', password='".$password."'"." WHERE id=".$_GET['id'];
+            // }
             
             $result = mysqli_query($conn, $sql);
             echo $result ? 'Update thanh cong' : 'Update that bai';
-
+            if($result === true){
+                header('Location : '.URL.'list_user.php');
+            }
         }
     ?>
 

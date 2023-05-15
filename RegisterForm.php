@@ -79,7 +79,31 @@
 
             $date = date('Y-m-d H:i:s');
 
-            $sql = sprintf("INSERT INTO user VALUES (null , '%s', '%s', '%s', '%s')", $username, $password, $baseFileName, $date);
+            $arrayData = [
+                'username' => $username,
+                'password' => $password,
+                'image_url' => $baseFileName,
+                'created_at' => $date               
+                // 'full_name' => $_POST[],
+                // 'created_at' => $date
+
+            ];
+            // $columns = implore(',', array_keys($arrayData));
+            // $arrayValues = array_map(function($item){
+            //     return "'".$item."'";
+            // }, array_values($arrayData));
+            // $values = implode(',', $arrayValuesTemp);
+
+            function prepareInsertStatament($arrayData, $table = 'user'): string{
+                $columns = implode(',', array_keys($arrayData));
+                $arrayValues = array_map(function($item){return "'".$item."'";}, array_values($arrayData));
+                $values = implode(',', $arrayValues);
+                return "INSERT INTO $table($columns) VALUES ($values)";
+            }
+
+            $sql = prepareInsertStatament($arrayData, 'user');
+            // $sql = "INSERT INTO user ($columns) VALUES ($values)"; //da gom vao trong function
+            // $sql = sprintf("INSERT INTO user VALUES (null , '%s', '%s', '%s', '%s')", $username, $password, $baseFileName, $date); //da gom vao trong function
 
             if ($conn->query($sql) === TRUE) {
                 echo "New record created successfully";
