@@ -50,9 +50,6 @@ if(isset($_GET['action']) && $_GET['action'] === 'UserDelete' & isset($_GET['id'
 // $result = mysqli_query($conn, $sql);
 // $row = mysqli_fetch_assoc($resultSlect);
 
-
-
-
 ?>
 <?php if (mysqli_num_rows($result) > 0) { ?>
     <table border="1">
