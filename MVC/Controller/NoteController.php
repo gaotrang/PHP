@@ -1,13 +1,29 @@
 <h1>Note Controller</h1>
 <?php
     class NoteController extends BaseController{
+
+        private $noteModel;
+        public function __construct(){
+            $this->loadModel('NoteModel.php');
+            $this->noteModel = new NoteModel;
+        }
         public function index(){
-            return $this->view('note.list_note');
+            $notes = $this->noteModel->getListNote();
+
+            return $this->view('note.list_note', ['notes' => $notes]);
         }
         public function create(){
             return $this->view('note.create_note');
         }
+        public function detail($id){
+            $note = $this->noteModel->getDetail($id);
+            return $this->view('note.detail_note', ['note'=> $note] );
+
+            // $sql = 'SELECT * FROM note where id='.$id;
+            // var_dump($sql);die;
+        }
     }
+
 
 
 ?>

@@ -23,15 +23,25 @@
                 }
 
                 require_once './Controller/'.$this->controller.'.php';
-                $this->controller = new $this->controller();
+               
 
                 if(isset($url[1])){
                     $this->action = $url[1];
                 }
 
+                if(isset($url[2])){
+                    $this->params = $url[2];
+                }
+
                 // var_dump($this->controller);
+                // $controllerObj = new $this->controller();
+                // $action = $this->action;
+                // $controllerObj->$action($this->params);
+
+                $this->controller = new $this->controller();
                 // var_dump($this->action);
-                call_user_func_array(array($this->controller, $this->action),[]);
+                //Ham call_user... se bien 1 array thanh string
+                call_user_func_array([$this->controller, $this->action],[$url[2]]);
             }
         }
 

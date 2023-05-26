@@ -12,9 +12,16 @@
 
     <?php
         // in array trong php dung lenh print_r
+        define('URL','http://localhost/php/mvc/index.php');
         require './Helpers/helper.php';
         require './Controller/BaseController.php';
+        require './Models/BaseModel.php';
         require './Core/App.php';
+        require './Core/Database.php';
+
+        $db = new Database;
+        $connect = $db->connect();
+
 
         $app = new App;
         // // $controller = $_GET['controller'] ?? 'user';

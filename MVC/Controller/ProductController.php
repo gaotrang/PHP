@@ -8,8 +8,7 @@
             // require './Models/ProductModel.php';
             $this->productModel = new ProductModel;
 
-            $this->loadModel('UserModel.php');
-            $this->productModel = new ProductModel;
+
 
         }
         public function index(){
