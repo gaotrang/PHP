@@ -2,6 +2,7 @@
     class App {
         private $controller='product';
         private $action='index';
+        private $params = '';
 
         public function __construct(){
             if(isset($_GET['url'])){
@@ -41,7 +42,8 @@
                 $this->controller = new $this->controller();
                 // var_dump($this->action);
                 //Ham call_user... se bien 1 array thanh string
-                call_user_func_array([$this->controller, $this->action],[$url[2]]);
+
+                call_user_func_array([$this->controller, $this->action],[$this->params]);
             }
         }
 

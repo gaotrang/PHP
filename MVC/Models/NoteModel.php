@@ -1,6 +1,6 @@
 <?php 
     class NoteModel extends BaseModel {
-        const TABLE = 'table_note';
+        const TABLE = 'note';
         // private $connect;
 
         // public function __construct(){
@@ -33,6 +33,14 @@
         //             ['id'=> 6, 'name' => 'Iphone 4'],
         //         ];
         // }
+        public function create($data){
+            return $this->store($data, self::TABLE);
+        }
+
+        public function deleteItem($id){
+            return $this->delete($id, self::TABLE);
+        }
     }
+
 
 ?>

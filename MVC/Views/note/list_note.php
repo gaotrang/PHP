@@ -23,14 +23,16 @@
             <tr>
                 <td><?= $key+1?></td>
                 <td><?= $note['id']?></td>
-                <td><?= $note['content']?></td>
+                <td><?= htmlspecialchars($note['content'])?></td>
                 <td><?= $note['user_id']?></td>
                 <td><?= $note['created_at']?></td>
                 <td>
                     <a href="<?= URL.'?url=note/detail/'.$note['id']?>">Detail</a>
+                    <a onclick=" return confirm('Are you sure?')" href="<?= URL.'?url=note/delete/'.$note['id']?>">Delete</a>
                 </td>
             </tr>
             <?php endforeach ?>
     </table>
+
 </body>
 </html>
