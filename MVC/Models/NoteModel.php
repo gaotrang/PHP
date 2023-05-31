@@ -26,6 +26,11 @@
             $data = $this->find(self::TABLE, $id);
             return $data;
         }
+
+        public function update($data, $id){
+            return $this->updateItem($data, self::TABLE, $id);
+
+        }
         // public function getListProductNewArrival(){
         //         return  [
         //             ['id'=> 4, 'name' => 'Iphone 1'],
@@ -40,6 +45,8 @@
         public function deleteItem($id){
             return $this->delete($id, self::TABLE);
         }
+
+
     }
 
 

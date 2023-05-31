@@ -27,7 +27,7 @@
                 <td><?= $note['user_id']?></td>
                 <td><?= $note['created_at']?></td>
                 <td>
-                    <a href="<?= URL.'?url=note/detail/'.$note['id']?>">Detail</a>
+                    <a href="<?= URL.'?url=note/detail/'.$note['id']?>">Update</a>
                     <a onclick=" return confirm('Are you sure?')" href="<?= URL.'?url=note/delete/'.$note['id']?>">Delete</a>
                 </td>
             </tr>

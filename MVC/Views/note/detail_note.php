@@ -20,12 +20,13 @@
         <select name="user_id">
             <option value="0">----Please Select----</option>
             <option value="1" <?php echo $note['user_id'] == 1 ? 'selected' : ''; ?>>1. Nguyen Van A</option>
-            <option value="2" <?php echo $note['user_id'] == 1 ? 'selected' : ''; ?>>2. Le Thi B</option>
-            <option value="3" <?php echo $note['user_id'] == 1 ? 'selected' : ''; ?>>3. Bui Huu C</option>
+            <option value="2" <?php echo $note['user_id'] == 2 ? 'selected' : ''; ?>>2. Le Thi B</option>
+            <option value="3" <?php echo $note['user_id'] == 3 ? 'selected' : ''; ?>>3. Bui Huu C</option>
         </select>
         <?php echo showError($errors ?? [], 'user_id'); ?>
         <br>
-        <input type="submit" value="Update" name="detail_note" />
+        <input type="hidden" name="id" value="<?= $note['id']?>" />
+        <input type="submit" value="Update" name="update_note" />
     </form>
 </body>
 </html>

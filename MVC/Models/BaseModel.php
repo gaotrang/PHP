@@ -31,7 +31,9 @@
 
             $columns = implode(',', array_keys($arrayData));
 
-            $arrayValues = array_map(function($item){return "'".$item."'";}, array_values($arrayData));
+            $arrayValues = array_map(function($item){
+                return "'".$item."'";
+                }, array_values($arrayData));
 
             $values = implode(',', $arrayValues);
 
@@ -47,5 +49,42 @@
             return mysqli_query($this->connect, $sql);
         }
 
+        function updateItem($arrayData, $table = 'note', $id){
+            $list=[];
+    
+            foreach($arrayData as $key => $value){
+                $list[] = "$key ='".$value."'";
+            }
+            $listData = implode(',', $list);
+    
+            $sql =  "UPDATE $table set $listData where id = $id";
+
+            return mysqli_query($this->connect, $sql);
+        }
+
+        public function checkUserExists($table, $email):bool{
+            $sql = "SELECT * FROM $table WHERE email = '$email'";
+            $results = mysqli_query($this->connect, $sql);
+            $rows = mysqli_num_rows($results);
+            return $rows > 0 ? true : false;
+        }
+
+        public function attemp($email, $password){
+            $sql = "select * from user where username = '" . $email . "' and password = '" . $password . "'";
+            
+            $result = mysqli_query($this->connect, $sql);
+    
+            $rows = mysqli_num_rows($result);
+    
+            if ($rows > 0) {
+                $_SESSION['username'] = $email;
+                echo 'user co trong he thong';
+            } else {
+                echo 'ten dang nhap or mat khau sai';
+            }
+        }
+
+
     }
+
 ?>

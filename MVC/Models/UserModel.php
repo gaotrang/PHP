@@ -1,18 +1,27 @@
 <?php 
-    class UserModel {
-        public function getListProductHot(){
-            return  [
-                ['id'=> 1, 'name' => 'Iphone 12'],
-                ['id'=> 2, 'name' => 'Iphone 13'],
-                ['id'=> 3, 'name' => 'Iphone 14'],
-            ];
+    class UserModel extends BaseModel {
+
+        const TABLE = 'user';
+
+        public function getListUser(){
+            $datas = $this->all(self::TABLE);
+            return $datas;
         }
-        public function getListProductNewArrival(){
-                return  [
-                    ['id'=> 4, 'name' => 'Iphone 1'],
-                    ['id'=> 5, 'name' => 'Iphone 3'],
-                    ['id'=> 6, 'name' => 'Iphone 4'],
-                ];
+        public function create($data){
+
+            return $this->store($data, self::TABLE);
+
+        }
+        public function getDetail($id){
+            $data = $this->find(self::TABLE, $id);
+            return $data;
+        }
+        public function checkUser($email){
+            $data = $this->checkUserExists(self::TABLE, $email);
+            return $data;
+        }
+        public function checkLogin($email, $password){
+            return $this->attemp($email, $password);
         }
     }
 
