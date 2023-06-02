@@ -8,7 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Create Note</h1>
+    <h1>Update Note</h1>
     <form action="" method="POST" >
         <label>Content</label>
         <br>

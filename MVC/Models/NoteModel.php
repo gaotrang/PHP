@@ -9,7 +9,6 @@
         //     $this->connect = $db->connect();
         // }
         public function getListNote(){
-  
             $datas = $this->all(self::TABLE);
             // $sql = 'SELECT * FROM table_note'; // Truy xuat vao table in database
             // $results = mysqli_query($this->connect, $sql); // Lay duoc kq trong database
@@ -20,6 +19,9 @@
         //         $datas[] = $row;
         //     }
             return $datas;
+        }
+        public function getListNoteByUserID($userID){
+            return $this->allHasUserID($userID, self::TABLE);
         }
 
         public function getDetail($id){

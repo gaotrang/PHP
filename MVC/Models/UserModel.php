@@ -20,8 +20,8 @@
             $data = $this->checkUserExists(self::TABLE, $email);
             return $data;
         }
-        public function checkLogin($email, $password){
-            return $this->attemp($email, $password);
+        public function attempLogin($email, $password){
+            return $this->checkLogin($email, $password);
         }
     }
 

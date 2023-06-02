@@ -1,3 +1,6 @@
+<?php
+echo 'User ID: '.$_SESSION['id'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

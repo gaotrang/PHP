@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +22,6 @@
 
         $db = new Database;
         $connect = $db->connect();
-
 
         $app = new App;
         // // $controller = $_GET['controller'] ?? 'user';
@@ -60,6 +60,7 @@
         // $userController->index();
         // $userController->create();   
     ?>
+    <a href="index.php?url=user/login">Login</a><br>
     <a href="index.php?url=user/index">List User</a><br>
     <a href="index.php?url=user/create">Create User</a><br>
     <a href="index.php?url=product_category/index">List Product Category</a><br>

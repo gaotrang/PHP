@@ -10,7 +10,9 @@
             $this->userModel = new UserModel;
         }
         public function index(){
-            $notes = $this->noteModel->getListNote();
+
+            $userID = $_SESSION['id'] ?? null;
+            $notes = $this->noteModel->getListNoteByUserID($userID);
 
             return $this->view('note.list_note', ['notes' => $notes]);
         }
@@ -75,9 +77,20 @@
                     throw new \Exception('Create note something went wrong');
                 }
             }
-            
             $note = $this->noteModel->getDetail($id);
-            return $this->view('note.detail_note', ['note' => $note]);
+
+            if(is_null($note)){
+                return $this->view('pages.404');
+            }
+            $userID = $_SESSION['id'] ?? null;
+            if($userID == $note['user_id']){
+                return $this->view('note.detail_note', ['note' => $note]);
+            }else{
+                return $this->view('pages.403');
+            }
+            
+            // $note = $this->noteModel->getDetail($id);
+            // return $this->view('note.detail_note', ['note' => $note]);
 
             // $sql = 'SELECT * FROM note where id='.$id;
             // var_dump($sql);die;

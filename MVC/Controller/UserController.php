@@ -57,7 +57,7 @@
         public function login(){
 
                 if (isset($_POST['login'])) {
-                    $username = $_POST['username'] ?? null;
+                    $username = $_POST['email'] ?? null;
                     $password = $_POST['password'] ?? null; //password raw
             
                     $username = trim($username);
@@ -66,12 +66,13 @@
             
                     $password = sha1($password . 'gaotrang');
 
-                    $check = $this->userModel->checkLogin($username, $password);
+                    $check = $this->userModel->attempLogin($username, $password);
 
                     if($check){
                         header('Location: '.URL.'?url=user/index');
                     }else{
-                        return $this->view('user.login', ['errors' => 'Username or password is invalid']);
+                        $errors['password'][] = 'Username or password is invalid';
+                        return $this->view('user.login', ['errors' => $errors ]);
                     }
                 }
             return $this->view('user.login');

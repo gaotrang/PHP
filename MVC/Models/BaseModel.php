@@ -1,4 +1,7 @@
 <?php
+session_start();
+?>
+<?php
     class BaseModel{
         // chuyen private thanh protected de cac thang con co the access vao thang cha
         protected $connect;
@@ -8,8 +11,8 @@
             $db = new Database;
             $this->connect = $db->connect();
         }
-
         public function all($table = 'note'){
+
             $sql = "SELECT * FROM $table"; // Truy xuat vao table in database
             $results = mysqli_query($this->connect, $sql); // Lay duoc kq trong database
             $datas=[];
@@ -20,6 +23,24 @@
             }
             return $datas;
         }
+        public function allHasUserID($userID, $table = 'note'){
+            if(is_null($userID)){
+                return [];
+            }
+
+            $sql = "SELECT * FROM $table
+             WHERE user_id = $userID";
+            $results = mysqli_query($this->connect, $sql);
+            $datas=[];
+
+            //dung php de doc ra tung row trong database
+            while($row=mysqli_fetch_assoc($results)){
+                $datas[] = $row;
+            }
+            
+            return $datas;
+        }
+
         public function find($table, $id){
             $sql = "SELECT * FROM $table WHERE id = $id";
             $results = mysqli_query($this->connect, $sql);
@@ -69,21 +90,20 @@
             return $rows > 0 ? true : false;
         }
 
-        public function attemp($email, $password){
-            $sql = "select * from user where username = '" . $email . "' and password = '" . $password . "'";
+        public function checkLogin($email, $password){
+            $sql = "select * from user where email = '" . $email . "' and password = '" . $password . "'";
             
             $result = mysqli_query($this->connect, $sql);
     
             $rows = mysqli_num_rows($result);
     
-            if ($rows > 0) {
-                $_SESSION['username'] = $email;
-                echo 'user co trong he thong';
-            } else {
-                echo 'ten dang nhap or mat khau sai';
-            }
+            if ($rows === 1) {
+                $user = mysqli_fetch_assoc($result);
+                $_SESSION['id'] = $user['id'];
+                return true;
+            } 
+                return false;
         }
-
 
     }
 
